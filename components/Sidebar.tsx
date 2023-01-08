@@ -1,8 +1,26 @@
-import { motion, AnimatePresence, useCycle } from "framer-motion";
-import { NAV_PAGES } from "../constants";
+import { motion, AnimatePresence, Cycle } from "framer-motion";
+import { Pages } from "../constants";
 import styles from "../styles/Home.module.css";
 import { ChevronLeftIcon, ChevronRightIcon, LinkedInLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
-import { useEffect } from "react";
+
+const NAV_PAGES: Pages = {
+    "Jacob McKenney": {
+        url: "/",
+        scroll: () => window.scroll({ behavior: "smooth", top: 0 }),
+    },
+    Education: {
+        url: "/education",
+        scroll: () => window.scroll({ behavior: "smooth", top: 0 }),
+    },
+    Projects: {
+        url: "/projects",
+        scroll: () => window.scroll({ behavior: "smooth", top: 0 }),
+    },
+    Experience: {
+        url: "/experience",
+        scroll: () => window.scroll({ behavior: "smooth", top: 0 }),
+    },
+};
 
 const itemVariants = {
     open: { opacity: 1, transition: { delay: 0.4 } },
@@ -10,8 +28,12 @@ const itemVariants = {
     exit: { opacity: 0 },
 };
 
-const Sidebar: React.FC = () => {
-    const [open, cycle] = useCycle(false, true);
+interface SidebarProps {
+    open: boolean;
+    cycle: Cycle;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ open, cycle }) => {
     return (
         <div style={{ position: "fixed" }}>
             <motion.div initial={{ x: 10 }} animate={{ x: open ? 170 : 10 }} transition={{ duration: 0.75 }}>
@@ -33,7 +55,7 @@ const Sidebar: React.FC = () => {
                         <motion.a
                             href="https://www.github.com/jacobmckenney"
                             whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
-                            animate={{ opacity: 1, x: open ? -160 : 0, y: open ? -53 : 0 }}
+                            animate={{ opacity: 1, x: open ? -160 : 0, y: open ? -54 : 0 }}
                             transition={{ duration: 0.75 }}
                         >
                             <GitHubLogoIcon />
@@ -47,9 +69,9 @@ const Sidebar: React.FC = () => {
                         {open && (
                             <motion.div className={styles.sidebarContainer}>
                                 {Object.entries(NAV_PAGES).map(([pageName, pageInfo]) => (
-                                    <motion.a
+                                    <motion.div
                                         className={styles.pageLink}
-                                        href={pageInfo.url}
+                                        onClick={() => pageInfo.scroll()}
                                         initial="closed"
                                         animate="open"
                                         exit="exit"
@@ -57,7 +79,7 @@ const Sidebar: React.FC = () => {
                                         whileHover={{ scale: 1.02 }}
                                     >
                                         {pageName}
-                                    </motion.a>
+                                    </motion.div>
                                 ))}
                             </motion.div>
                         )}
