@@ -2,24 +2,10 @@ import { motion, AnimatePresence, useCycle } from "framer-motion";
 import { NAV_PAGES } from "../constants";
 import styles from "../styles/Home.module.css";
 import { ChevronLeftIcon, ChevronRightIcon, LinkedInLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
-
-const sidebarVariants = {
-    open: {
-        transition: {
-            staggerChildren: 0.2,
-            staggerDirection: 1,
-        },
-    },
-    closed: {
-        transition: {
-            staggerChildren: 0.2,
-            staggerDirection: -1,
-        },
-    },
-};
+import { useEffect } from "react";
 
 const itemVariants = {
-    open: { opacity: 1, transition: { delay: 0.5 } },
+    open: { opacity: 1, transition: { delay: 0.4 } },
     closed: { opacity: 0 },
     exit: { opacity: 0 },
 };
@@ -38,7 +24,7 @@ const Sidebar: React.FC = () => {
                         )}
                         <motion.a
                             href="https://www.linkedin.com/in/jacobmckenney/"
-                            whileHover={{ scale: 1.2 }}
+                            whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
                             animate={{ opacity: 1, x: open ? -135 : 0, y: open ? -25 : 0 }}
                             transition={{ duration: 0.75 }}
                         >
@@ -46,7 +32,7 @@ const Sidebar: React.FC = () => {
                         </motion.a>
                         <motion.a
                             href="https://www.github.com/jacobmckenney"
-                            whileHover={{ scale: 1.2 }}
+                            whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
                             animate={{ opacity: 1, x: open ? -160 : 0, y: open ? -53 : 0 }}
                             transition={{ duration: 0.75 }}
                         >
@@ -59,19 +45,16 @@ const Sidebar: React.FC = () => {
                 <AnimatePresence>
                     <div className={styles.sidebar}>
                         {open && (
-                            <motion.div
-                                className={styles.sidebarContainer}
-                                initial="closed"
-                                animate="open"
-                                variants={sidebarVariants}
-                            >
+                            <motion.div className={styles.sidebarContainer}>
                                 {Object.entries(NAV_PAGES).map(([pageName, pageInfo]) => (
                                     <motion.a
+                                        className={styles.pageLink}
                                         href={pageInfo.url}
                                         initial="closed"
                                         animate="open"
                                         exit="exit"
                                         variants={itemVariants}
+                                        whileHover={{ scale: 1.02 }}
                                     >
                                         {pageName}
                                     </motion.a>

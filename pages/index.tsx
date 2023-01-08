@@ -17,7 +17,8 @@ const Home: NextPage = () => {
                 <Sidebar />
                 <ProgressBar />
                 <div className={styles.main}>
-                    <p style={{ height: "5000px" }}>Jacob McKenney</p>
+                    <p style={{ height: "1000px" }}>Jacob McKenney</p>
+                    <p style={{ height: "1000px" }}>Education</p>
                 </div>
             </main>
         </>

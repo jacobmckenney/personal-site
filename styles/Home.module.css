@@ -15,6 +15,7 @@
 }
 
 .sidebarContainer {
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   row-gap: 10px;
@@ -42,4 +43,8 @@
   flex-direction: row;
   display: flex;
   justify-content: space-evenly;
+}
+
+.pageLink:hover {
+  color: lightgray;
 }
