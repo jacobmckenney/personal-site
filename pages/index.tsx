@@ -5,6 +5,7 @@ import ProgressBar from "../components/ProgressBar";
 import styles from "../styles/Home.module.css";
 import { useRef, RefObject } from "react";
 import { motion, useCycle } from "framer-motion";
+import Section from "../components/Section";
 
 const Home: NextPage = () => {
     const [open, cycle] = useCycle(false, true);
@@ -47,23 +48,26 @@ const Home: NextPage = () => {
                                     natus minus est impedit ab? Dolorum, impedit culpa!
                                 </div>
                             </div>
-                            <motion.img src="/jacob.jpeg" className={styles.profilePhoto} />
+                            <img src="/jacob.jpeg" className={styles.profilePhoto} />
                         </motion.div>
-                        <div className={styles.education}>
+                        <div style={{ height: 500 }} />
+                        <Section className={styles.education}>
                             <h2>Education</h2>
                             <p>University of Washington</p>
                             <p> B.S. Computer Engineering</p>
-                        </div>
-                        <div className={styles.experience}>
+                        </Section>
+                        <div style={{ height: 500 }} />
+                        <Section className={styles.experience}>
                             <h2>Experience</h2>
                             <p>University of Washington</p>
                             <p> B.S. Computer Engineering</p>
-                        </div>
-                        <div className={styles.projects}>
+                        </Section>
+                        <div style={{ height: 500 }} />
+                        <Section className={styles.projects}>
                             <h2>Projects</h2>
                             <p>University of Washington</p>
                             <p> B.S. Computer Engineering</p>
-                        </div>
+                        </Section>
                     </div>
                 </motion.div>
             </main>
