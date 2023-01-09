@@ -10,15 +10,15 @@ const NAV_PAGES: Pages = {
     },
     Education: {
         url: "/education",
-        scroll: () => window.scroll({ behavior: "smooth", top: 0 }),
+        scroll: () => window.scroll({ behavior: "smooth", top: 500 }),
     },
     Projects: {
         url: "/projects",
-        scroll: () => window.scroll({ behavior: "smooth", top: 0 }),
+        scroll: () => window.scroll({ behavior: "smooth", top: 1000 }),
     },
     Experience: {
         url: "/experience",
-        scroll: () => window.scroll({ behavior: "smooth", top: 0 }),
+        scroll: () => window.scroll({ behavior: "smooth", top: 1500 }),
     },
 };
 

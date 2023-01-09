@@ -57,17 +57,18 @@ const Home: NextPage = () => {
                             <p> B.S. Computer Engineering</p>
                         </Section>
                         <div style={{ height: 500 }} />
+                        <Section className={styles.projects}>
+                            <h2>Projects</h2>
+                            <p>University of Washington</p>
+                            <p> B.S. Computer Engineering</p>
+                        </Section>
+                        <div style={{ height: 500 }} />
                         <Section className={styles.experience}>
                             <h2>Experience</h2>
                             <p>University of Washington</p>
                             <p> B.S. Computer Engineering</p>
                         </Section>
                         <div style={{ height: 500 }} />
-                        <Section className={styles.projects}>
-                            <h2>Projects</h2>
-                            <p>University of Washington</p>
-                            <p> B.S. Computer Engineering</p>
-                        </Section>
                     </div>
                 </motion.div>
             </main>
