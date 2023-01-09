@@ -1,26 +1,8 @@
 import { motion, AnimatePresence, Cycle } from "framer-motion";
+import { RefObject } from "react";
 import { Pages } from "../constants";
 import styles from "../styles/Home.module.css";
 import { ChevronLeftIcon, ChevronRightIcon, LinkedInLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
-
-const NAV_PAGES: Pages = {
-    "Jacob McKenney": {
-        url: "/",
-        scroll: () => window.scroll({ behavior: "smooth", top: 0 }),
-    },
-    Education: {
-        url: "/education",
-        scroll: () => window.scroll({ behavior: "smooth", top: 500 }),
-    },
-    Projects: {
-        url: "/projects",
-        scroll: () => window.scroll({ behavior: "smooth", top: 1000 }),
-    },
-    Experience: {
-        url: "/experience",
-        scroll: () => window.scroll({ behavior: "smooth", top: 1500 }),
-    },
-};
 
 const itemVariants = {
     open: { opacity: 1, transition: { delay: 0.4 } },
@@ -31,9 +13,10 @@ const itemVariants = {
 interface SidebarProps {
     open: boolean;
     cycle: Cycle;
+    sectionRefs: { [sectionName: string]: RefObject<HTMLDivElement> };
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ open, cycle }) => {
+const Sidebar: React.FC<SidebarProps> = ({ open, cycle, sectionRefs }) => {
     return (
         <div style={{ position: "fixed" }}>
             <motion.div initial={{ x: 10 }} animate={{ x: open ? 170 : 10 }} transition={{ duration: 0.75 }}>
@@ -68,17 +51,22 @@ const Sidebar: React.FC<SidebarProps> = ({ open, cycle }) => {
                     <div className={styles.sidebar}>
                         {open && (
                             <motion.div className={styles.sidebarContainer}>
-                                {Object.entries(NAV_PAGES).map(([pageName, pageInfo]) => (
+                                {Object.entries(sectionRefs).map(([sectionName, sectionRef], i) => (
                                     <motion.div
                                         className={styles.pageLink}
-                                        onClick={() => pageInfo.scroll()}
+                                        onClick={() =>
+                                            sectionRef.current?.scrollIntoView({
+                                                block: "center",
+                                                behavior: "smooth",
+                                            })
+                                        }
                                         initial="closed"
                                         animate="open"
                                         exit="exit"
                                         variants={itemVariants}
                                         whileHover={{ scale: 1.02 }}
                                     >
-                                        {pageName}
+                                        {sectionName}
                                     </motion.div>
                                 ))}
                             </motion.div>

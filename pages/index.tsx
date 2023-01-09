@@ -9,7 +9,10 @@ import Section from "../components/Section";
 
 const Home: NextPage = () => {
     const [open, cycle] = useCycle(false, true);
-    const introRef: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
+    const introRef: RefObject<HTMLHeadingElement> = useRef<HTMLHeadingElement>(null);
+    const educationRef: RefObject<HTMLHeadingElement> = useRef<HTMLHeadingElement>(null);
+    const projectRef: RefObject<HTMLHeadingElement> = useRef<HTMLHeadingElement>(null);
+    const experienceRef: RefObject<HTMLHeadingElement> = useRef<HTMLHeadingElement>(null);
     return (
         <>
             <Head>
@@ -19,9 +22,17 @@ const Home: NextPage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main style={{ overflow: "hidden" }}>
-                <Sidebar open={open} cycle={cycle} />
+                <Sidebar
+                    open={open}
+                    cycle={cycle}
+                    sectionRefs={{
+                        "Jacob McKenney": introRef,
+                        Education: educationRef,
+                        Projects: projectRef,
+                        Experience: experienceRef,
+                    }}
+                />
                 <ProgressBar />
-
                 <motion.div
                     initial={{ x: 35 }}
                     animate={{
@@ -35,11 +46,10 @@ const Home: NextPage = () => {
                             className={styles.introduction}
                             initial={{ x: 1000 }}
                             animate={{ x: 0, transition: { duration: 1 } }}
-                            ref={introRef}
                         >
                             <div className={styles.introText}>
                                 <div>
-                                    <h2>Jacob McKenney</h2>
+                                    <h2 ref={introRef}>Jacob McKenney</h2>
                                     <p>Software Engineer</p>
                                 </div>
                                 <div style={{ maxWidth: 200 }}>
@@ -52,19 +62,19 @@ const Home: NextPage = () => {
                         </motion.div>
                         <div style={{ height: 500 }} />
                         <Section className={styles.education}>
-                            <h2>Education</h2>
+                            <h2 ref={educationRef}>Education</h2>
                             <p>University of Washington</p>
                             <p> B.S. Computer Engineering</p>
                         </Section>
                         <div style={{ height: 500 }} />
                         <Section className={styles.projects}>
-                            <h2>Projects</h2>
+                            <h2 ref={projectRef}>Projects</h2>
                             <p>University of Washington</p>
                             <p> B.S. Computer Engineering</p>
                         </Section>
                         <div style={{ height: 500 }} />
                         <Section className={styles.experience}>
-                            <h2>Experience</h2>
+                            <h2 ref={experienceRef}>Experience</h2>
                             <p>University of Washington</p>
                             <p> B.S. Computer Engineering</p>
                         </Section>
