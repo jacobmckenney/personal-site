@@ -60,7 +60,6 @@
   display: flex;
   flex-direction: row;
   column-gap: 30px;
-  align-self:flex-start;
 }
 
 .introText {
@@ -69,17 +68,14 @@
   justify-content: space-between;
 }
 
-.education {
+.education, .projects {
   align-self: flex-end;
 }
 
-.experience {
+.experience, .introduction {
   align-self: flex-start;
 }
 
-.projects {
-  align-self: flex-end;
-}
 
 .pageLink:hover {
   color: lightgray;
@@ -89,4 +85,15 @@
   display: flex;
   flex-direction: row;
   column-gap: 10px;
+}
+
+@media (max-width: 690px ) {
+  .education, .experience, .projects, .introduction {
+    align-self: center;
+    transition:cubic-bezier(1, 0, 0, 1);
+  }
+  .introduction {
+    flex-direction: column-reverse;
+    row-gap: 20px;
+  }
 }

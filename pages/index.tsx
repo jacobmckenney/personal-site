@@ -7,6 +7,19 @@ import { useRef, RefObject } from "react";
 import { motion, useCycle } from "framer-motion";
 import Section from "../components/Section";
 
+const allSectionsVariants = {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: { duration: 0.75, staggerChildren: 0.5, when: "beforeChildren" },
+    },
+};
+
+const sectionVariants = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1 },
+};
+
 const Home: NextPage = () => {
     const [open, cycle] = useCycle(false, true);
     const introRef: RefObject<HTMLHeadingElement> = useRef<HTMLHeadingElement>(null);
@@ -42,11 +55,7 @@ const Home: NextPage = () => {
                     }}
                 >
                     <div className={styles.main}>
-                        <motion.div
-                            className={styles.introduction}
-                            initial={{ x: 1000 }}
-                            animate={{ x: 0, transition: { duration: 1 } }}
-                        >
+                        <Section className={styles.introduction}>
                             <div className={styles.introText}>
                                 <div>
                                     <h2 ref={introRef}>Jacob McKenney</h2>
@@ -59,7 +68,7 @@ const Home: NextPage = () => {
                                 </div>
                             </div>
                             <img src="/jacob.jpeg" className={styles.profilePhoto} />
-                        </motion.div>
+                        </Section>
                         <div style={{ height: 500 }} />
                         <Section className={styles.education}>
                             <h2 ref={educationRef}>Education</h2>
