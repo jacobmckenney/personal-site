@@ -84,3 +84,9 @@
 .pageLink:hover {
   color: lightgray;
 }
+
+.experienceIcons {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+}

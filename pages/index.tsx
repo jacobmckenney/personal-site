@@ -75,8 +75,27 @@ const Home: NextPage = () => {
                         <div style={{ height: 500 }} />
                         <Section className={styles.experience}>
                             <h2 ref={experienceRef}>Experience</h2>
-                            <p>University of Washington</p>
-                            <p> B.S. Computer Engineering</p>
+                        </Section>
+                        <div style={{ height: 200 }}></div>
+                        <Section className={styles.experience}>
+                            <div style={{ display: "flex", columnGap: "10px" }}>
+                                <img src="/grovia.ico" style={{ width: 20 }} />
+                                <h3>Grovia</h3>
+                            </div>
+                        </Section>
+                        <div style={{ height: 200 }}></div>
+                        <Section className={styles.experience}>
+                            <div style={{ display: "flex", columnGap: "10px" }}>
+                                <img src="/amazon.svg" style={{ width: 20 }} />
+                                <h3>Amazon</h3>
+                            </div>
+                        </Section>
+                        <div style={{ height: 200 }}></div>
+                        <Section className={styles.experience}>
+                            <div style={{ display: "flex", columnGap: "10px" }}>
+                                <img src="/zillow.svg" style={{ width: 20 }} />
+                                <h3>Zillow</h3>
+                            </div>
                         </Section>
                         <div style={{ height: 500 }} />
                     </div>
