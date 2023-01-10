@@ -70,8 +70,6 @@ const Home: NextPage = () => {
         setLoadingTopo(true);
         // TODO: replace the fetch with just setting topo from STATIC_TOPOS
         setLoadingTopo(false);
-        const newTopo: ClosTopology = await res.json();
-        setTopology(newTopo);
         setNumServers(nservers);
         // Set delay so x/y values of new topo are correctly set before wiring
         setTimeout(() => setWiring(true), 200);
