@@ -1,6 +1,10 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import "../styles/globals.css";
+import type { AppProps } from "next/app";
+import { useEffect } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+    useEffect(() => {
+        window.history.scrollRestoration = "manual"; // Scrolls to top on reload
+    }, []);
+    return <Component {...pageProps} />;
 }

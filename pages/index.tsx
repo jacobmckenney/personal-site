@@ -22,10 +22,18 @@ const sectionVariants = {
 
 const Home: NextPage = () => {
     const [open, cycle] = useCycle(false, true);
+
     const introRef: RefObject<HTMLHeadingElement> = useRef<HTMLHeadingElement>(null);
     const educationRef: RefObject<HTMLHeadingElement> = useRef<HTMLHeadingElement>(null);
     const projectRef: RefObject<HTMLHeadingElement> = useRef<HTMLHeadingElement>(null);
     const experienceRef: RefObject<HTMLHeadingElement> = useRef<HTMLHeadingElement>(null);
+    const sectionRefs = {
+        "Jacob McKenney": introRef,
+        Education: educationRef,
+        Projects: projectRef,
+        Experience: experienceRef,
+    };
+
     return (
         <>
             <Head>
@@ -35,16 +43,7 @@ const Home: NextPage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main style={{ overflow: "hidden" }}>
-                <Sidebar
-                    open={open}
-                    cycle={cycle}
-                    sectionRefs={{
-                        "Jacob McKenney": introRef,
-                        Education: educationRef,
-                        Projects: projectRef,
-                        Experience: experienceRef,
-                    }}
-                />
+                <Sidebar open={open} cycle={cycle} sectionRefs={sectionRefs} />
                 <ProgressBar />
                 <motion.div
                     initial={{ x: 35 }}

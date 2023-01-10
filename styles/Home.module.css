@@ -1,12 +1,4 @@
-.main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 6rem;
-  align-items: center;
-  min-height: 100vh;
-}
-
+/* Sidebar */
 .sidebar {
   background-color: #22252a;
   height: 100vh;
@@ -30,6 +22,16 @@
   flex-direction: column;
 }
 
+.pageLink {
+  width: fit-content;
+  cursor: pointer;
+}
+
+.pageLink:hover {
+  color: lightgray;
+}
+
+/* Progress bar */
 .progressBar {
   position: fixed;
   bottom: 0px;
@@ -40,15 +42,15 @@
   transform-origin: left;
 }
 
-.nav {
-  flex-direction: row;
-  display: flex;
-  justify-content: space-evenly;
-}
+/* Main page */
 
-.pageLink {
-  width: fit-content;
-  cursor: pointer;
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6rem;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .profilePhoto {
@@ -68,18 +70,14 @@
   justify-content: space-between;
 }
 
-.education, .projects {
+.education, .experience {
   align-self: flex-end;
 }
 
-.experience, .introduction {
+.projects, .introduction {
   align-self: flex-start;
 }
 
-
-.pageLink:hover {
-  color: lightgray;
-}
 
 .experienceIcons {
   display: flex;
