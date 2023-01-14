@@ -8,6 +8,8 @@ import { motion } from "framer-motion";
 import { setTimeout } from "timers";
 import { useWindowSize } from "../hooks";
 import { SelectedPath, ClosTopology, STATIC_TOPO, SwitchRefs, Path } from "../constants";
+import { usePageResizeFn } from "../hooks";
+import debounce from "lodash/debounce";
 
 // Altered version of this project: https://github.com/jacobmckenney/clos-topology-builder
 // This version just serves static paths generated from the backend so that no
@@ -65,6 +67,13 @@ const Home: NextPage = () => {
     const { width, height } = useWindowSize();
     const switchRef = useRef<SwitchRefs>({});
 
+    const debouncedResize = debounce(() => {
+        setWiring(false);
+        setTimeout(() => setWiring(true), 200);
+    }, 150);
+
+    usePageResizeFn(debouncedResize);
+
     const refetch = async (ls: number, degree: number, nservers: number, uplinks: number) => {
         setWiring(false);
         setLoadingTopo(true);
@@ -74,6 +83,8 @@ const Home: NextPage = () => {
         // Set delay so x/y values of new topo are correctly set before wiring
         setTimeout(() => setWiring(true), 200);
     };
+
+    useEffect(debouncedResize, []);
 
     useEffect(() => {
         const { startId, endId } = selectedPath;

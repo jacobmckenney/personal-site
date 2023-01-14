@@ -6,19 +6,10 @@ import styles from "../styles/Home.module.css";
 import { useRef, RefObject } from "react";
 import { motion, useCycle } from "framer-motion";
 import Section from "../components/Section";
+import dynamic from "next/dynamic";
+import PDFViewer from "../components/PDFViewer";
 
-const allSectionsVariants = {
-    hidden: { opacity: 0 },
-    show: {
-        opacity: 1,
-        transition: { duration: 0.75, staggerChildren: 0.5, when: "beforeChildren" },
-    },
-};
-
-const sectionVariants = {
-    hidden: { opacity: 0 },
-    show: { opacity: 1 },
-};
+const CapstonePaper = dynamic(import("../components/PDFViewer"), { ssr: false });
 
 const Home: NextPage = () => {
     const [open, cycle] = useCycle(false, true);
@@ -72,13 +63,18 @@ const Home: NextPage = () => {
                         <Section className={styles.education}>
                             <h2 ref={educationRef}>Education</h2>
                             <p>University of Washington</p>
-                            <p> B.S. Computer Engineering</p>
+                            <p> B.S. Computer Engineering - Grade: 3.88</p>
                         </Section>
                         <div style={{ height: 500 }} />
+                        <iframe src="/clos" style={{ width: "100%", height: "800px", border: "0" }} />
                         <Section className={styles.projects}>
                             <h2 ref={projectRef}>Projects</h2>
-                            <p>University of Washington</p>
-                            <p> B.S. Computer Engineering</p>
+                            <div></div>
+                            <div>Paxos</div>
+                            <div>Capstone Paper</div>
+                            <PDFViewer file={"/capstone_paper.pdf"} numPages={11} />
+                            <div>File Search Engine</div>
+                            <div>Campus Maps</div>
                         </Section>
                         <div style={{ height: 500 }} />
                         <Section className={styles.experience}>
@@ -90,6 +86,17 @@ const Home: NextPage = () => {
                                 <img src="/grovia.ico" style={{ width: 20 }} />
                                 <h3>Grovia</h3>
                             </div>
+                            <ul>
+                                <li>Full-Stack development working directly under company leadership</li>
+                                <li>
+                                    Employed modern technologies such as React, Django, Python, etc. to create the best
+                                    possible user experience for customers
+                                </li>
+                                <li>
+                                    Maintained software development cycle expertise using project management tools like
+                                    GitHub + Linear
+                                </li>
+                            </ul>
                         </Section>
                         <div style={{ height: 200 }}></div>
                         <Section className={styles.experience}>
@@ -97,6 +104,22 @@ const Home: NextPage = () => {
                                 <img src="/amazon.svg" style={{ width: 20 }} />
                                 <h3>Amazon</h3>
                             </div>
+                            <ul>
+                                <li>
+                                    Built from scratch a proof-of-concept user interface to help in the process of
+                                    service onboarding
+                                </li>
+                                <li>Implemented complex parsing and validation logic via NextJS endpoints</li>
+                                <li>
+                                    Collaborated with senior engineers & managers to design a bespoke application for
+                                    the customer
+                                </li>
+                                <li>
+                                    Consistently delivered before deadlines which resulted in the expansion of the
+                                    application above and beyond the original deliverables
+                                </li>
+                                <li>Trained in AWS technologies (Lambda, APIGateway, Fargate, ECS, & more)</li>
+                            </ul>
                         </Section>
                         <div style={{ height: 200 }}></div>
                         <Section className={styles.experience}>
@@ -104,6 +127,18 @@ const Home: NextPage = () => {
                                 <img src="/zillow.svg" style={{ width: 20 }} />
                                 <h3>Zillow</h3>
                             </div>
+                            <ul>
+                                <li>Assessed and updated current codebase to use modern JS paradigms</li>
+                                <li>
+                                    Built frontend features utilizing redux state management and internal
+                                    packages/component libraries
+                                </li>
+                                <li>Worked closely with mentors to ensure usage of best practices</li>
+                                <li>
+                                    Developed full-stack internal tool for a company-wide hackweek to improve efficiency
+                                    & productivity of scrum processes
+                                </li>
+                            </ul>
                         </Section>
                         <div style={{ height: 500 }} />
                     </div>

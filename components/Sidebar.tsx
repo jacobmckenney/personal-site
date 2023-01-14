@@ -1,6 +1,5 @@
 import { motion, AnimatePresence, Cycle } from "framer-motion";
 import { RefObject } from "react";
-import { Pages } from "../constants";
 import styles from "../styles/Home.module.css";
 import { ChevronLeftIcon, ChevronRightIcon, LinkedInLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 

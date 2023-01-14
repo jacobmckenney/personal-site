@@ -26,3 +26,12 @@ export const useWindowSize = ()  => {
     }, []); // Empty array ensures that effect is only run on mount
     return windowSize;
 }
+
+export const usePageResizeFn = (fn: () => void) => {
+    useEffect(() => {
+        window.addEventListener("resize", fn);
+        return () => {
+            window.removeEventListener("resize", fn);
+        }
+    }, [])
+}
