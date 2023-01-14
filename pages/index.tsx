@@ -7,9 +7,8 @@ import { useRef, RefObject } from "react";
 import { motion, useCycle } from "framer-motion";
 import Section from "../components/Section";
 import dynamic from "next/dynamic";
-import PDFViewer from "../components/PDFViewer";
 
-const CapstonePaper = dynamic(import("../components/PDFViewer"), { ssr: false });
+const PDFViewer = dynamic(import("../components/PDFViewer"), { ssr: false });
 
 const Home: NextPage = () => {
     const [open, cycle] = useCycle(false, true);
