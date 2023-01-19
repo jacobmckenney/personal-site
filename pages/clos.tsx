@@ -91,6 +91,8 @@ const Home: NextPage = () => {
     const switchRef = useRef<SwitchRefs>({});
     const [error, setError] = useState(false);
 
+    console.log(process.env.BACKEND_IP);
+
     const debouncedResize = debounce(() => {
         setWiring(false);
         setTimeout(() => setWiring(true), 200);
