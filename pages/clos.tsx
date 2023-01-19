@@ -6,14 +6,11 @@ import { PlusCircledIcon, MinusCircledIcon } from "@radix-ui/react-icons";
 import styles from "../styles/clos.module.css";
 import { motion } from "framer-motion";
 import { setTimeout } from "timers";
-import { useWindowSize } from "../hooks";
-import { SelectedPath, ClosTopology, STATIC_TOPO, SwitchRefs, Path } from "../constants";
 import { usePageResizeFn } from "../hooks";
+import type { SelectedPath, ClosTopology, WindowSize, SwitchRefs, Path } from "../constants";
 import debounce from "lodash/debounce";
 
-// Altered version of this project: https://github.com/jacobmckenney/clos-topology-builder
-// This version just serves static paths generated from the backend so that no
-// backend has to be hosted
+const queryURL: string = process.env.NODE_ENV === "development" ? "localhost" : process.env.BACKEND_IP ?? "";
 
 const MAX_SWITCH_DEGREE = 12;
 const MIN_SWITCH_DEGREE = 2;
@@ -26,6 +23,32 @@ const LEVEL_TO_LABEL: { [key: string]: string } = {
     "2": "Agg",
     "3": "Core",
 };
+
+function useWindowSize() {
+    // Initialize state with undefined width/height so server and client renders match
+    // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+    const [windowSize, setWindowSize] = useState<WindowSize>({
+        width: undefined,
+        height: undefined,
+    });
+    useEffect(() => {
+        // Handler to call on window resize
+        function handleResize() {
+            // Set window width/height to state
+            setWindowSize({
+                width: window.innerWidth,
+                height: window.innerHeight,
+            });
+        }
+        // Add event listener
+        window.addEventListener("resize", handleResize);
+        // Call handler right away so state gets updated with initial window size
+        handleResize();
+        // Remove event listener on cleanup
+        return () => window.removeEventListener("resize", handleResize);
+    }, []); // Empty array ensures that effect is only run on mount
+    return windowSize;
+}
 
 const draw = {
     hidden: { pathLength: 0, opacity: 0 },
@@ -56,8 +79,8 @@ const getRate = (switchDegree: number, uplinkNum: number) => {
 
 const Home: NextPage = () => {
     const [loadingTopo, setLoadingTopo] = useState(false);
-    const [topology, setTopology] = useState<ClosTopology>(STATIC_TOPO);
-    const [numServers, setNumServers] = useState(STATIC_TOPO.topo["0"].length);
+    const [topology, setTopology] = useState<ClosTopology | undefined>(undefined);
+    const [numServers, setNumServers] = useState(1);
     const [switchDegree, setSwitchDegree] = useState(4);
     const [uplinkNum, setUplinkNum] = useState(switchDegree / 2);
     const [wiring, setWiring] = useState(false);
@@ -66,6 +89,7 @@ const Home: NextPage = () => {
     const [path, setPath] = useState<Path | undefined>(undefined);
     const { width, height } = useWindowSize();
     const switchRef = useRef<SwitchRefs>({});
+    const [error, setError] = useState(false);
 
     const debouncedResize = debounce(() => {
         setWiring(false);
@@ -75,16 +99,28 @@ const Home: NextPage = () => {
     usePageResizeFn(debouncedResize);
 
     const refetch = async (ls: number, degree: number, nservers: number, uplinks: number) => {
-        setWiring(false);
-        setLoadingTopo(true);
-        // TODO: replace the fetch with just setting topo from STATIC_TOPOS
-        setLoadingTopo(false);
-        setNumServers(nservers);
-        // Set delay so x/y values of new topo are correctly set before wiring
-        setTimeout(() => setWiring(true), 200);
+        try {
+            setWiring(false);
+            setLoadingTopo(true);
+            const res = await fetch(
+                `http://${queryURL}:4567/topo?levels=${ls}&switchDegree=${degree}&numServers=${nservers}&uplinkNum=${uplinks}`
+            );
+            setLoadingTopo(false);
+            const newTopo: ClosTopology = await res.json();
+            setTopology(newTopo);
+            setNumServers(nservers);
+            // Set delay so x/y values of new topo are correctly set before wiring
+            setTimeout(() => setWiring(true), 200);
+            setError(false);
+        } catch (e) {
+            setError(true);
+        }
     };
 
-    useEffect(debouncedResize, []);
+    // Initial fetch of topo
+    useEffect(() => {
+        refetch(levels, switchDegree, maxServers(switchDegree, uplinkNum, levels), uplinkNum);
+    }, []);
 
     useEffect(() => {
         const { startId, endId } = selectedPath;
@@ -101,11 +137,6 @@ const Home: NextPage = () => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedPath]);
-
-    useEffect(() => {
-        setWiring(false);
-        setTimeout(() => setWiring(true), 200);
-    }, [topology]);
 
     const getAnchorPoint = (top: boolean, nodeId: string) => {
         const nodeSwitch: HTMLDivElement | null | undefined = switchRef.current[nodeId];
@@ -195,7 +226,8 @@ const Home: NextPage = () => {
             </Head>
             <div className={styles.headerBar}>
                 <h3>Clos Topology Builder</h3>
-                {loadingTopo && <p>fetching topology...</p>}
+                {!error && loadingTopo && <p>fetching topology...</p>}
+                {error && <p>Error fetching new topo</p>}
                 <div>
                     Subscription Rate: {getRate(switchDegree, uplinkNum)}
                     {uplinkNum + 1 <= switchDegree / 2 && (

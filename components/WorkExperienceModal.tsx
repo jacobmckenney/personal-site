@@ -4,13 +4,6 @@ import styles from "../styles/Home.module.css";
 
 interface Props {}
 
-const cards = [
-    { id: 1, title: "card1", content: "content oh yeah!" },
-    { id: 2, title: "card2", content: "more content baby" },
-    { id: 3, title: "card3", content: "this is content huzzah" },
-    { id: 4, title: "card4", content: "ello mate" },
-];
-
 type Experience = {
     company: string;
     logoPath: string;

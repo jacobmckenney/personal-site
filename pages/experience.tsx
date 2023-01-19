@@ -1,8 +1,4 @@
-import { NextPage } from "next";
-import Section from "../components/Section";
-import WorkExperience from "../components/WorkExperience";
-import styles from "../styles/Home.module.css";
-import { motion, useCycle, Variants, AnimatePresence } from "framer-motion";
+import { useCycle, Variants, AnimatePresence } from "framer-motion";
 import { ReactElement, useState } from "react";
 import WorkExperienceModal from "../components/WorkExperienceModal";
 import { NextPageWithLayout } from "./_app";
