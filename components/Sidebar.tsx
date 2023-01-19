@@ -2,6 +2,8 @@ import { motion, AnimatePresence, Cycle } from "framer-motion";
 import { RefObject } from "react";
 import styles from "../styles/Home.module.css";
 import { ChevronLeftIcon, ChevronRightIcon, LinkedInLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
+import { getSidebarWidth } from "./layout";
+import Link from "next/link";
 
 const itemVariants = {
     open: { opacity: 1, transition: { delay: 0.4 } },
@@ -12,12 +14,13 @@ const itemVariants = {
 interface SidebarProps {
     open: boolean;
     cycle: Cycle;
-    sectionRefs: { [sectionName: string]: RefObject<HTMLDivElement> };
+    sectionRefs: { [sectionName: string]: string };
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ open, cycle, sectionRefs }) => {
+    const sidebarWidth = getSidebarWidth(open);
     return (
-        <div style={{ position: "fixed" }}>
+        <div style={{ position: "fixed", zIndex: 1 }}>
             <motion.div initial={{ x: 10 }} animate={{ x: open ? 170 : 10 }} transition={{ duration: 0.75 }}>
                 <AnimatePresence>
                     <div className={styles.sidebarIcons}>
@@ -45,27 +48,26 @@ const Sidebar: React.FC<SidebarProps> = ({ open, cycle, sectionRefs }) => {
                     </div>
                 </AnimatePresence>
             </motion.div>
-            <motion.aside initial={{ width: 35 }} animate={{ width: open ? 200 : 35 }} transition={{ duration: 0.75 }}>
+            <motion.aside
+                initial={{ width: getSidebarWidth(false) }}
+                animate={{ width: sidebarWidth }}
+                transition={{ duration: 0.75 }}
+            >
                 <AnimatePresence>
                     <div className={styles.sidebar}>
                         {open && (
                             <motion.div className={styles.sidebarContainer}>
-                                {Object.entries(sectionRefs).map(([sectionName, sectionRef], i) => (
+                                {Object.entries(sectionRefs).map(([sectionName, url], i) => (
                                     <motion.div
                                         className={styles.pageLink}
-                                        onClick={() =>
-                                            sectionRef.current?.scrollIntoView({
-                                                block: "center",
-                                                behavior: "smooth",
-                                            })
-                                        }
                                         initial="closed"
                                         animate="open"
                                         exit="exit"
+                                        key={sectionName}
                                         variants={itemVariants}
                                         whileHover={{ scale: 1.02 }}
                                     >
-                                        {sectionName}
+                                        <Link href={url}>{sectionName}</Link>
                                     </motion.div>
                                 ))}
                             </motion.div>
