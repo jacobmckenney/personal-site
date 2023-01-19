@@ -10,8 +10,6 @@ import { usePageResizeFn } from "../hooks";
 import type { SelectedPath, ClosTopology, WindowSize, SwitchRefs, Path } from "../constants";
 import debounce from "lodash/debounce";
 
-const queryURL: string = process.env.NODE_ENV === "development" ? "localhost" : process.env.BACKEND_IP ?? "";
-
 const MAX_SWITCH_DEGREE = 12;
 const MIN_SWITCH_DEGREE = 2;
 const ROW_GAP_PX = 2;
@@ -91,7 +89,9 @@ const Home: NextPage = () => {
     const switchRef = useRef<SwitchRefs>({});
     const [error, setError] = useState(false);
 
-    console.log(process.env.BACKEND_IP);
+    const queryURL: string = process.env.NODE_ENV === "development" ? "localhost" : process.env.BACKEND_IP ?? "";
+
+    console.log(process.env.BACKEND_IP); // TODO: remove
 
     const debouncedResize = debounce(() => {
         setWiring(false);
