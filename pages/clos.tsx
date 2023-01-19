@@ -92,6 +92,8 @@ const Home: NextPage = () => {
     const queryURL: string =
         process.env.NODE_ENV === "development" ? "localhost" : process.env.NEXT_PUBLIC_BACKEND_IP ?? "";
 
+    console.log(process.env.NEXT_PUBLIC_BACKEND_IP);
+
     const debouncedResize = debounce(() => {
         setWiring(false);
         setTimeout(() => setWiring(true), 200);
