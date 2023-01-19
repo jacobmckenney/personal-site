@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useRef, useState } from "react";
+import React, { FC, ReactNode, useState } from "react";
 import { MotionConfig, motion, Variants, AnimatePresence } from "framer-motion";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import Card from "./Card";
