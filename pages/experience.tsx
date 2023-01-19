@@ -4,19 +4,6 @@ import WorkExperienceModal from "../components/WorkExperienceModal";
 import { NextPageWithLayout } from "./_app";
 import Layout from "../components/layout";
 
-const modalVariants: Variants = {
-    open: {
-        position: "fixed",
-        left: "50%",
-        transform: "translate(-50%, 0)",
-        top: "50%",
-    },
-    closed: {
-        position: "absolute",
-        left: "0%",
-    },
-};
-
 const Practice: NextPageWithLayout = () => {
     const [layout, toggleLayout] = useCycle(false, true);
     return (
