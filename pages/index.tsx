@@ -1,28 +1,46 @@
 import Head from "next/head";
-import { NextPage } from "next";
-import Sidebar from "../components/Sidebar";
+import { NextPageWithLayout } from "./_app";
 import ProgressBar from "../components/ProgressBar";
 import styles from "../styles/Home.module.css";
-import { useRef, RefObject } from "react";
-import { motion, useCycle } from "framer-motion";
+import { useRef, RefObject, useEffect, useState, ReactElement } from "react";
+import { motion, transform, useCycle } from "framer-motion";
 import Section from "../components/Section";
 import dynamic from "next/dynamic";
+import { useWindowSize } from "../hooks";
+import Link from "next/link";
+import Layout from "../components/layout";
 
 const PDFViewer = dynamic(import("../components/PDFViewer"), { ssr: false });
 
-const Home: NextPage = () => {
+const Home: NextPageWithLayout = () => {
     const [open, cycle] = useCycle(false, true);
+    const [carouselOffset, setCarouselOffset] = useState(0);
 
     const introRef: RefObject<HTMLHeadingElement> = useRef<HTMLHeadingElement>(null);
     const educationRef: RefObject<HTMLHeadingElement> = useRef<HTMLHeadingElement>(null);
     const projectRef: RefObject<HTMLHeadingElement> = useRef<HTMLHeadingElement>(null);
     const experienceRef: RefObject<HTMLHeadingElement> = useRef<HTMLHeadingElement>(null);
-    const sectionRefs = {
-        "Jacob McKenney": introRef,
-        Education: educationRef,
-        Projects: projectRef,
-        Experience: experienceRef,
-    };
+
+    const sidebarWidth = open ? 200 : 25;
+
+    const { width } = useWindowSize();
+    const screenWidth: number = width ?? 1;
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCarouselOffset((carouselOffset) => (carouselOffset + 1) % screenWidth);
+        }, 10);
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
+
+    const carouselTranformer = transform([0, screenWidth], [-screenWidth / 2, screenWidth / 2], {
+        clamp: false,
+    });
+    const carouselTransformed = carouselTranformer(carouselOffset);
+
+    useEffect(() => console.log(carouselTransformed), [carouselTransformed]);
 
     return (
         <>
@@ -33,14 +51,13 @@ const Home: NextPage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main style={{ overflow: "hidden" }}>
-                <Sidebar open={open} cycle={cycle} sectionRefs={sectionRefs} />
                 <ProgressBar />
                 <motion.div
                     initial={{ x: 35 }}
                     animate={{
-                        x: open ? 200 : 35,
+                        x: sidebarWidth,
                         transition: { duration: 0.75 },
-                        width: `calc(100vw - ${open ? 200 : 35}px)`,
+                        width: `calc(100vw - ${sidebarWidth}px)`,
                     }}
                 >
                     <div className={styles.main}>
@@ -71,80 +88,26 @@ const Home: NextPage = () => {
                             <div></div>
                             <div>Paxos</div>
                             <div>Capstone Paper</div>
-                            <PDFViewer file={"/capstone_paper.pdf"} numPages={11} />
+                            <PDFViewer file="capstone_paper.pdf" numPages={11} />
                             <div>File Search Engine</div>
                             <div>Campus Maps</div>
                         </Section>
                         <div style={{ height: 500 }} />
                         <Section className={styles.experience}>
-                            <h2 ref={experienceRef}>Experience</h2>
+                            <Link href="/experience">
+                                <h2 ref={experienceRef}>Experience</h2>
+                            </Link>
                         </Section>
                         <div style={{ height: 200 }}></div>
-                        <Section className={styles.experience}>
-                            <div style={{ display: "flex", columnGap: "10px" }}>
-                                <img src="/grovia.ico" style={{ width: 20 }} />
-                                <h3>Grovia</h3>
-                            </div>
-                            <ul>
-                                <li>Full-Stack development working directly under company leadership</li>
-                                <li>
-                                    Employed modern technologies such as React, Django, Python, etc. to create the best
-                                    possible user experience for customers
-                                </li>
-                                <li>
-                                    Maintained software development cycle expertise using project management tools like
-                                    GitHub + Linear
-                                </li>
-                            </ul>
-                        </Section>
-                        <div style={{ height: 200 }}></div>
-                        <Section className={styles.experience}>
-                            <div style={{ display: "flex", columnGap: "10px" }}>
-                                <img src="/amazon.svg" style={{ width: 20 }} />
-                                <h3>Amazon</h3>
-                            </div>
-                            <ul>
-                                <li>
-                                    Built from scratch a proof-of-concept user interface to help in the process of
-                                    service onboarding
-                                </li>
-                                <li>Implemented complex parsing and validation logic via NextJS endpoints</li>
-                                <li>
-                                    Collaborated with senior engineers & managers to design a bespoke application for
-                                    the customer
-                                </li>
-                                <li>
-                                    Consistently delivered before deadlines which resulted in the expansion of the
-                                    application above and beyond the original deliverables
-                                </li>
-                                <li>Trained in AWS technologies (Lambda, APIGateway, Fargate, ECS, & more)</li>
-                            </ul>
-                        </Section>
-                        <div style={{ height: 200 }}></div>
-                        <Section className={styles.experience}>
-                            <div style={{ display: "flex", columnGap: "10px" }}>
-                                <img src="/zillow.svg" style={{ width: 20 }} />
-                                <h3>Zillow</h3>
-                            </div>
-                            <ul>
-                                <li>Assessed and updated current codebase to use modern JS paradigms</li>
-                                <li>
-                                    Built frontend features utilizing redux state management and internal
-                                    packages/component libraries
-                                </li>
-                                <li>Worked closely with mentors to ensure usage of best practices</li>
-                                <li>
-                                    Developed full-stack internal tool for a company-wide hackweek to improve efficiency
-                                    & productivity of scrum processes
-                                </li>
-                            </ul>
-                        </Section>
-                        <div style={{ height: 500 }} />
                     </div>
                 </motion.div>
             </main>
         </>
     );
+};
+
+Home.getLayout = (page: ReactElement) => {
+    return <Layout>{page}</Layout>;
 };
 
 export default Home;

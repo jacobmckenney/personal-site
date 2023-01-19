@@ -1,10 +1,22 @@
 import "../styles/globals.css";
+import Layout from "../components/layout";
 import type { AppProps } from "next/app";
-import { useEffect } from "react";
+import { ReactElement, ReactNode, useEffect } from "react";
+import { NextPage } from "next";
 
-export default function App({ Component, pageProps }: AppProps) {
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+    getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+    Component: NextPageWithLayout;
+};
+
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
     useEffect(() => {
         window.history.scrollRestoration = "manual"; // Scrolls to top on reload
     }, []);
-    return <Component {...pageProps} />;
+
+    const getLayout = Component.getLayout ?? ((page) => page);
+    return getLayout(<Component {...pageProps} />);
 }
