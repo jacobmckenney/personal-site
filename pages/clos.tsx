@@ -89,9 +89,8 @@ const Home: NextPage = () => {
     const switchRef = useRef<SwitchRefs>({});
     const [error, setError] = useState(false);
 
-    const queryURL: string = process.env.NODE_ENV === "development" ? "localhost" : process.env.BACKEND_IP ?? "";
-
-    console.log(process.env.BACKEND_IP); // TODO: remove
+    const queryURL: string =
+        process.env.NODE_ENV === "development" ? "localhost" : process.env.NEXT_PUBLIC_BACKEND_IP ?? "";
 
     const debouncedResize = debounce(() => {
         setWiring(false);
