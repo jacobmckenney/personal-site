@@ -48,7 +48,6 @@ const Home: NextPageWithLayout = () => {
                 <title>Jacob McKenney</title>
                 <meta name="description" content="Jacob McKenney's personal website" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main style={{ overflow: "hidden" }}>

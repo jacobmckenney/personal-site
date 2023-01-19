@@ -158,6 +158,9 @@ const Home: NextPage = () => {
 
     return (
         <>
+            <Head>
+                <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+            </Head>
             <motion.svg
                 width={width}
                 height={height}
