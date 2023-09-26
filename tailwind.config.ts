@@ -12,7 +12,11 @@ export default {
       secondary: "#273043",
       tertiary: "#9197AE",
       background: "#eeff6ee",
+      amazon: "#FF9900",
+      grovia: "#EC4F38",
+      uw: "#4b2e83",
       levanta: "#308042",
+      zillow: "#006AFF",
 
       // gray 1-14
       "gray-0": "#FFFFFF",
