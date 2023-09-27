@@ -8,10 +8,10 @@ export default {
       white: "#FFFFFF",
       black: "#000000",
 
-      primary: "#F02D3A",
+      primary: "#A52422",
       secondary: "#273043",
       tertiary: "#9197AE",
-      background: "#eeff6ee",
+      background: "#eff6ee",
       amazon: "#FF9900",
       grovia: "#EC4F38",
       uw: "#4b2e83",

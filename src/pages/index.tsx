@@ -1,10 +1,11 @@
+import { Github, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
 import { ExperienceCard } from "~/components/ExperienceCard";
 
 export default function Home() {
   return (
     <>
-      <div className="container mx-auto flex flex-col items-center gap-10">
+      <div className="container mx-auto flex w-full flex-col items-center">
         <div className="mt-20 flex flex-row items-center gap-3">
           <div className="aspect-square w-24 overflow-hidden rounded-full">
             <Image
@@ -20,7 +21,7 @@ export default function Home() {
             <div className="text-md pl-1 font-light">
               Full-Stack Software Engineer @{" "}
               <a
-                className="text-levanta cursor-pointer font-semibold hover:brightness-75"
+                className="cursor-pointer font-semibold text-levanta hover:brightness-75"
                 href="https://www.levanta.io"
               >
                 Levanta
@@ -28,7 +29,24 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-10">
+        <div className="mb-10 flex w-1/2 flex-row items-center justify-center gap-10">
+          <a target="_blank" href="https://www.github.com/jacobmckenney">
+            <div className="rounded-full border-2 border-tertiary/30 bg-tertiary/30 p-2 text-secondary hover:border-secondary">
+              <Github className="h-5 w-5" />
+            </div>
+          </a>
+          <a target="_blank" href="https://www.linkedin.com/in/jacobmckenney">
+            <div className="rounded-full border-2 border-tertiary/30 bg-tertiary/30 p-2 text-secondary hover:border-secondary">
+              <Linkedin className="h-6 w-6" />
+            </div>
+          </a>
+          <a href="mailto:jacobgmckenney@gmail.com">
+            <div className="rounded-full border-2 border-tertiary/30 bg-tertiary/30 p-2 text-secondary hover:border-secondary">
+              <Mail className="h-6 w-6" />
+            </div>
+          </a>
+        </div>
+        <div className="flex flex-row flex-wrap items-center justify-center gap-10">
           <ExperienceCard
             experience={{
               variant: "uw",

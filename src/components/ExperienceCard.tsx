@@ -4,9 +4,7 @@ import { cn } from "~/lib/cn";
 import { Collapsible } from "./general/Collapsible";
 
 const experienceCard = cva(
-  [
-    "text-white w-full max-w-xl w-[576px] border-secondary rounded-xl border-2 p-3 shadow-md relative",
-  ],
+  ["text-white w-[400px] border-secondary rounded-xl border-2 p-3 shadow-md"],
   {
     variants: {
       variant: {
