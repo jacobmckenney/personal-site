@@ -48,7 +48,7 @@ export const ExperienceCard: React.FC<Props> = ({
               experienceCard({ variant: experience.variant, class: className }),
             )}
           >
-            <div className="flex w-full flex-row items-center justify-between gap-3">
+            <div className="flex w-full flex-row items-center justify-between gap-3 text-end">
               <div className="w-max">{experience.icon}</div>
               <div>
                 <p className="text-xl max-sm:text-lg">{experience.title}</p>
@@ -60,12 +60,17 @@ export const ExperienceCard: React.FC<Props> = ({
         <SheetContent
           className={experienceCard({
             variant: experience.variant,
-            class: "w-full max-sm:w-full",
+            class: "w-full max-w-4xl max-sm:w-full",
           })}
           position="right"
           isOpen={isOpen}
         >
-          {children}
+          <div className="mb-10">
+            <p className="text-xl font-semibold">{experience.title}</p>
+          </div>
+          <div className="flex w-full max-w-2xl flex-col items-center px-2">
+            {children}
+          </div>
         </SheetContent>
       </Sheet>
     </>

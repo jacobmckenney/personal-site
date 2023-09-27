@@ -17,8 +17,10 @@ export default function Home() {
             />
           </div>
           <div>
-            <div className="text-4xl font-semibold">Jacob McKenney</div>
-            <div className="text-md pl-1 font-light">
+            <div className="text-4xl font-semibold max-sm:text-xl">
+              Jacob McKenney
+            </div>
+            <div className="text-md pl-1 font-light max-sm:text-xs">
               Full-Stack Software Engineer @{" "}
               <a
                 className="cursor-pointer font-semibold text-levanta hover:brightness-75"
@@ -29,24 +31,24 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="mb-10 flex w-1/2 flex-row items-center justify-center gap-10 max-sm:mt-5">
+        <div className="mb-10 flex w-1/2 flex-row items-center justify-center gap-10 max-sm:mt-5 max-sm:gap-4">
           <a target="_blank" href="https://www.github.com/jacobmckenney">
-            <div className="rounded-full border-2 border-tertiary/30 bg-tertiary/30 p-2 text-secondary hover:border-secondary">
-              <Github className="h-5 w-5" />
+            <div className="rounded-full border-2 border-tertiary/30 bg-tertiary/30 p-2 text-black hover:border-black max-sm:border-[1px] max-sm:p-1.5">
+              <Github className="h-6 w-6 max-sm:h-4 max-sm:w-4" />
             </div>
           </a>
           <a target="_blank" href="https://www.linkedin.com/in/jacobmckenney">
-            <div className="rounded-full border-2 border-tertiary/30 bg-tertiary/30 p-2 text-secondary hover:border-secondary">
-              <Linkedin className="h-6 w-6" />
+            <div className="rounded-full border-2 border-tertiary/30 bg-tertiary/30 p-2 text-black hover:border-black max-sm:border-[1px] max-sm:p-1.5">
+              <Linkedin className="h-6 w-6 max-sm:h-4 max-sm:w-4" />
             </div>
           </a>
           <a href="mailto:jacobgmckenney@gmail.com">
-            <div className="rounded-full border-2 border-tertiary/30 bg-tertiary/30 p-2 text-secondary hover:border-secondary">
-              <Mail className="h-6 w-6" />
+            <div className="rounded-full border-2 border-tertiary/30 bg-tertiary/30 p-2 text-black hover:border-black max-sm:border-[1px] max-sm:p-1.5">
+              <Mail className="h-6 w-6 max-sm:h-4 max-sm:w-4" />
             </div>
           </a>
         </div>
-        <div className="flex flex-row flex-wrap items-center justify-center gap-10">
+        <div className="flex flex-row flex-wrap items-center justify-center gap-10 px-3">
           <ExperienceCard
             experience={{
               variant: "uw",
@@ -87,13 +89,19 @@ export default function Home() {
               ),
             }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            <ul className="list-disc">
+              <li>
+                Full-Stack development working directly under company leadership
+              </li>
+              <li>
+                Employing modern technologies such as React, Django, Python,
+                etc. to create the best possible user experience for customers
+              </li>
+              <li>
+                Maintaining software development cycle expertise using project
+                management tools like GitHub + Linear
+              </li>
+            </ul>
           </ExperienceCard>
           <ExperienceCard
             experience={{
