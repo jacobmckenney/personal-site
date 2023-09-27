@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <div className="container mx-auto flex w-full flex-col items-center">
         <div className="mt-20 flex flex-row items-center gap-3">
-          <div className="aspect-square w-24 overflow-hidden rounded-full">
+          <div className="aspect-square w-24 overflow-hidden rounded-full max-sm:w-16">
             <Image
               alt="Head shot"
               src="/images/headshot-2.jpeg"
@@ -29,7 +29,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="mb-10 flex w-1/2 flex-row items-center justify-center gap-10">
+        <div className="mb-10 flex w-1/2 flex-row items-center justify-center gap-10 max-sm:mt-5">
           <a target="_blank" href="https://www.github.com/jacobmckenney">
             <div className="rounded-full border-2 border-tertiary/30 bg-tertiary/30 p-2 text-secondary hover:border-secondary">
               <Github className="h-5 w-5" />
