@@ -13,7 +13,7 @@ export const Button = React.forwardRef<HTMLButtonElement, Props>(
         <button
           ref={forwardedRef}
           className={cn(
-            "rounded-lg border font-semibold shadow-sm transition-all disabled:cursor-not-allowed",
+            "rounded-lg border font-semibold shadow-sm transition-all focus:outline-none disabled:cursor-not-allowed",
             className,
           )}
           {...props}

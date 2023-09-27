@@ -5,16 +5,31 @@ import { Sheet, SheetContent, SheetTrigger } from "./general/Sheet";
 
 const experienceCard = cva(
   [
-    "text-white w-[400px] max-sm:w-[300px] border-secondary rounded-xl border-2 p-3 shadow-md",
+    "text-white w-[400px] max-sm:w-[300px] h-[75px] border-secondary rounded-xl border-2 p-3 shadow-md",
   ],
   {
     variants: {
       variant: {
         amazon: ["bg-white border-amazon text-amazon"],
         grovia: ["bg-white border-grovia text-grovia"],
-        levanta: ["bg-levanta border-white"],
-        uw: ["bg-uw border-white"],
-        zillow: ["bg-zillow border-white"],
+        levanta: ["bg-white border-levanta text-levanta"],
+        uw: ["bg-white border-uw text-uw"],
+        zillow: ["bg-white border-zillow text-zillow"],
+      },
+    },
+  },
+);
+
+const experienceSheet = cva(
+  ["w-full max-w-4xl max-sM: w-full rounded-xl border-2 p-3 relative"],
+  {
+    variants: {
+      variant: {
+        amazon: ["bg-amazon text-white bordr-white"],
+        grovia: ["bg-grovia text-white border-white"],
+        levanta: ["bg-levanta text-white border-white"],
+        uw: ["bg-uw text-white border-white"],
+        zillow: ["bg-zillow text-white border-white"],
       },
     },
   },
@@ -58,19 +73,21 @@ export const ExperienceCard: React.FC<Props> = ({
           </div>
         </SheetTrigger>
         <SheetContent
-          className={experienceCard({
+          className={experienceSheet({
             variant: experience.variant,
-            class: "w-full max-w-4xl max-sm:w-full",
           })}
           position="right"
           isOpen={isOpen}
         >
-          <div className="mb-10">
-            <p className="text-xl font-semibold">{experience.title}</p>
+          <div className="mb-10 flex flex-row items-center gap-4">
+            <div className="relative h-12 w-12  rounded-full bg-white">
+              <div className="absolute right-1/2 top-1/2 -translate-y-1/2 translate-x-1/2">
+                {experience.icon}
+              </div>
+            </div>
+            <p className="text-3xl font-semibold">{experience.title}</p>
           </div>
-          <div className="flex w-full max-w-2xl flex-col items-center px-2">
-            {children}
-          </div>
+          <div className="flex w-full max-w-lg flex-col px-2">{children}</div>
         </SheetContent>
       </Sheet>
     </>

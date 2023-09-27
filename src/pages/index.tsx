@@ -1,5 +1,7 @@
 import { Github, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
+import { FaReact } from "react-icons/fa";
+import { SiTypescript } from "react-icons/si";
 import { ExperienceCard } from "~/components/ExperienceCard";
 
 export default function Home() {
@@ -31,48 +33,146 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="mb-10 flex w-1/2 flex-row items-center justify-center gap-10 max-sm:mt-5 max-sm:gap-4">
+        <div className="mb-10 flex w-1/2 flex-row items-center justify-center gap-10 max-sm:mt-5 max-sm:gap-6">
           <a target="_blank" href="https://www.github.com/jacobmckenney">
-            <div className="rounded-full border-2 border-tertiary/30 bg-tertiary/30 p-2 text-black hover:border-black max-sm:border-[1px] max-sm:p-1.5">
-              <Github className="h-6 w-6 max-sm:h-4 max-sm:w-4" />
+            <div className="rounded-full border-2 border-tertiary/30 bg-tertiary/30 p-2 text-black hover:border-black max-sm:border-[1px]">
+              <Github className="h-6 w-6 max-sm:h-5 max-sm:w-5" />
             </div>
           </a>
           <a target="_blank" href="https://www.linkedin.com/in/jacobmckenney">
-            <div className="rounded-full border-2 border-tertiary/30 bg-tertiary/30 p-2 text-black hover:border-black max-sm:border-[1px] max-sm:p-1.5">
-              <Linkedin className="h-6 w-6 max-sm:h-4 max-sm:w-4" />
+            <div className="rounded-full border-2 border-tertiary/30 bg-tertiary/30 p-2 text-black hover:border-black max-sm:border-[1px]">
+              <Linkedin className="h-6 w-6 max-sm:h-5 max-sm:w-5" />
             </div>
           </a>
           <a href="mailto:jacobgmckenney@gmail.com">
-            <div className="rounded-full border-2 border-tertiary/30 bg-tertiary/30 p-2 text-black hover:border-black max-sm:border-[1px] max-sm:p-1.5">
-              <Mail className="h-6 w-6 max-sm:h-4 max-sm:w-4" />
+            <div className="rounded-full border-2 border-tertiary/30 bg-tertiary/30 p-2 text-black hover:border-black max-sm:border-[1px]">
+              <Mail className="h-6 w-6 max-sm:h-5 max-sm:w-5" />
             </div>
           </a>
         </div>
-        <div className="flex flex-row flex-wrap items-center justify-center gap-10 px-3">
+        <div className="mb-10 flex flex-row flex-wrap items-center justify-center gap-10 px-3">
           <ExperienceCard
             experience={{
-              variant: "uw",
-              dates: "2019 - 2023",
-              title: "University of Washington",
+              variant: "levanta",
+              dates: "Feb 2023 - Present",
+              title: "Levanta",
               icon: (
                 <Image
                   draggable={false}
-                  alt="UW Logo"
-                  src="/images/uw.png"
-                  width={50}
-                  height={50}
+                  alt="Levanta Logo"
+                  src="/images/levanta-logo-dark.svg"
+                  width={30}
+                  height={30}
                 />
               ),
             }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            Building the marketplace where amazon sellers and influencers forge
+            affiliate relationships.
           </ExperienceCard>
+          <ExperienceCard
+            experience={{
+              variant: "zillow",
+              dates: "Summer 2022",
+              title: "Zillow",
+              icon: (
+                <Image
+                  draggable={false}
+                  alt="Zillow Logo"
+                  src="/images/zillow-small.svg"
+                  width={37}
+                  height={37}
+                />
+              ),
+            }}
+          >
+            <p className="text-lg">
+              <span className="font-semibold">Team: </span>
+              <a
+                href="https://www.zillowhomeloans.com"
+                className="cursor-pointer underline underline-offset-2 hover:brightness-90"
+              >
+                ZHL
+              </a>{" "}
+              Customer Experience
+            </p>
+            <div>
+              <p className="text-lg">
+                <span className="font-semibold">Project:</span> Settings Revamp
+              </p>
+            </div>
+            <div className="flex gap-3">
+              <p className="text-lg font-semibold">Stack:</p>
+              <div className="flex flex-row gap-2">
+                <a href="https://www.react.dev" className="hover:brightness-90">
+                  <FaReact className="h-6 w-6" />
+                </a>
+                <a
+                  href="https://www.typescriptlang.org/"
+                  className="hover:brightness-90"
+                >
+                  <SiTypescript className="h-6 w-6" />
+                </a>
+              </div>
+            </div>
+            <ul className="ml-3 list-disc">
+              <li>
+                Assessed and updated current codebase to use modern JS paradigms
+              </li>
+              <li>
+                Built frontend features utilizing redux state management and
+                internal packages/component libraries
+              </li>
+              <li>
+                Worked closely with mentors to ensure usage of best practices
+              </li>
+              <li>
+                Developed full-stack internal tool for a company-wide hackweek
+                to improve efficiency & productivity of scrum processes
+              </li>
+            </ul>
+          </ExperienceCard>
+          <ExperienceCard
+            experience={{
+              variant: "amazon",
+              dates: "Winter 2021",
+              title: "Amazon",
+              icon: (
+                <Image
+                  draggable={false}
+                  alt="Amazon Logo"
+                  src="/images/amazon-small.png"
+                  width={42}
+                  height={42}
+                />
+              ),
+            }}
+          >
+            <ul className="ml-3 list-disc">
+              <li>
+                Built from scratch a proof-of-concept user interface to help in
+                the process of service onboarding
+              </li>
+              <li>
+                Implemented complex parsing and validation logic via NextJS
+                endpoints
+              </li>
+              <li>
+                Collaborated with senior engineers & managers to design a
+                bespoke application for the customer
+              </li>
+              <li>
+                Consistently delivered before deadlines which resulted in the
+                expansion of the application above and beyond the original
+                deliverables
+              </li>
+              <li>
+                Trained in AWS technologies (Lambda, APIGateway, Fargate, ECS, &
+                more)
+              </li>
+            </ul>
+          </ExperienceCard>
+
           <ExperienceCard
             experience={{
               variant: "grovia",
@@ -82,14 +182,14 @@ export default function Home() {
                 <Image
                   draggable={false}
                   alt="Grovia Logo"
-                  src="/images/grovia-long.png"
-                  width={100}
-                  height={30}
+                  src="/images/grovia.jpeg"
+                  width={45}
+                  height={45}
                 />
               ),
             }}
           >
-            <ul className="list-disc">
+            <ul className="ml-3 list-disc">
               <li>
                 Full-Stack development working directly under company leadership
               </li>
@@ -105,80 +205,24 @@ export default function Home() {
           </ExperienceCard>
           <ExperienceCard
             experience={{
-              variant: "zillow",
-              dates: "Summer 2022",
-              title: "Zillow",
-              icon: (
-                <div className="rounded-xl bg-white px-2 py-1">
-                  <Image
-                    draggable={false}
-                    alt="Zillow Logo"
-                    src="/images/zillow-logo.png"
-                    width={100}
-                    height={50}
-                  />
-                </div>
-              ),
-            }}
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </ExperienceCard>
-          <ExperienceCard
-            experience={{
-              variant: "amazon",
-              dates: "Winter 2021",
-              title: "Amazon",
+              variant: "uw",
+              dates: "2019 - 2023",
+              title: "University of Washington",
               icon: (
                 <Image
                   draggable={false}
-                  alt="Amazon Logo"
-                  src="/images/amazon-logo.png"
-                  width={100}
-                  height={30}
+                  alt="UW Logo"
+                  src="/images/uw-small.svg"
+                  width={45}
+                  height={45}
                 />
               ),
             }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </ExperienceCard>
-
-          <ExperienceCard
-            experience={{
-              variant: "levanta",
-              dates: "Feb 2023 - Present",
-              title: "Levanta",
-              icon: (
-                <div className="rounded-xl bg-white px-2 py-1">
-                  <Image
-                    draggable={false}
-                    alt="Levanta Logo"
-                    src="/images/levanta-logo-dark.svg"
-                    width={25}
-                    height={25}
-                  />
-                </div>
-              ),
-            }}
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            <p>
+              Graduated Fall 2023 from the Paul G. Allen School of Computer
+              Science & Engineering with Cum Laude distinction.
+            </p>
           </ExperienceCard>
         </div>
       </div>
