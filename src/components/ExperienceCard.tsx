@@ -1,7 +1,7 @@
 import { VariantProps, cva } from "class-variance-authority";
+import Link from "next/link";
 import React from "react";
 import { cn } from "~/lib/cn";
-import { Sheet, SheetContent, SheetTrigger } from "./general/Sheet";
 
 const experienceCard = cva(
   [
@@ -20,7 +20,7 @@ const experienceCard = cva(
   },
 );
 
-const experienceSheet = cva(
+export const experienceSheet = cva(
   ["w-full max-w-4xl max-sM: w-full rounded-xl border-2 p-3 relative"],
   {
     variants: {
@@ -40,6 +40,7 @@ export type Experience = {
   title: string;
   dates: string;
   icon: React.ReactNode;
+  content: React.ReactNode;
 };
 
 interface Props {
@@ -53,43 +54,23 @@ export const ExperienceCard: React.FC<Props> = ({
   className,
   children,
 }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
   return (
     <>
-      <Sheet open={isOpen} onOpenChange={() => setIsOpen((x) => !x)}>
-        <SheetTrigger>
-          <div
-            className={cn(
-              experienceCard({ variant: experience.variant, class: className }),
-            )}
-          >
-            <div className="flex w-full flex-row items-center justify-between gap-3 text-end">
-              <div className="w-max">{experience.icon}</div>
-              <div>
-                <p className="text-xl max-sm:text-lg">{experience.title}</p>
-                <p className="text-xs">{experience.dates}</p>
-              </div>
-            </div>
+      <Link
+        href={`/?page=${experience.variant}`}
+        as={`/${experience.variant}`}
+        className={cn(
+          experienceCard({ variant: experience.variant, class: className }),
+        )}
+      >
+        <div className="flex w-full flex-row items-center justify-between gap-3 text-end">
+          <div className="w-max">{experience.icon}</div>
+          <div>
+            <p className="text-xl max-sm:text-lg">{experience.title}</p>
+            <p className="text-xs">{experience.dates}</p>
           </div>
-        </SheetTrigger>
-        <SheetContent
-          className={experienceSheet({
-            variant: experience.variant,
-          })}
-          position="right"
-          isOpen={isOpen}
-        >
-          <div className="mb-10 flex flex-row items-center gap-4">
-            <div className="relative h-12 w-12  rounded-full bg-white">
-              <div className="absolute right-1/2 top-1/2 -translate-y-1/2 translate-x-1/2">
-                {experience.icon}
-              </div>
-            </div>
-            <p className="text-3xl font-semibold">{experience.title}</p>
-          </div>
-          <div className="flex w-full max-w-lg flex-col px-2">{children}</div>
-        </SheetContent>
-      </Sheet>
+        </div>
+      </Link>
     </>
   );
 };
