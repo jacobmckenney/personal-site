@@ -1,14 +1,17 @@
 import { Github, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { FaReact } from "react-icons/fa";
-import { SiTypescript } from "react-icons/si";
+import { Amazon } from "~/components/Amazon";
 import {
   Experience,
   ExperienceCard,
   experienceSheet,
 } from "~/components/ExperienceCard";
+import { Grovia } from "~/components/Grovia";
+import { Levanta } from "~/components/Levanta";
+import { Zillow } from "~/components/Zillow";
 import { Sheet, SheetContent } from "~/components/general/Sheet";
+import { UW } from "~/components/general/UW";
 
 const experiences: Experience[] = [
   {
@@ -24,12 +27,7 @@ const experiences: Experience[] = [
         height={30}
       />
     ),
-    content: (
-      <p>
-        Building the marketplace where amazon sellers and influencers forge
-        affiliate relationships.
-      </p>
-    ),
+    content: <Levanta />,
   },
   {
     variant: "zillow",
@@ -44,54 +42,7 @@ const experiences: Experience[] = [
         height={37}
       />
     ),
-    content: (
-      <>
-        {" "}
-        <p className="text-lg">
-          <span className="font-semibold">Team: </span>
-          <a
-            href="https://www.zillowhomeloans.com"
-            className="cursor-pointer underline underline-offset-2 hover:brightness-90"
-          >
-            ZHL
-          </a>{" "}
-          Customer Experience
-        </p>
-        <div>
-          <p className="text-lg">
-            <span className="font-semibold">Project:</span> Settings Revamp
-          </p>
-        </div>
-        <div className="flex gap-3">
-          <p className="text-lg font-semibold">Stack:</p>
-          <div className="flex flex-row gap-2">
-            <a href="https://www.react.dev" className="hover:brightness-90">
-              <FaReact className="h-6 w-6" />
-            </a>
-            <a
-              href="https://www.typescriptlang.org/"
-              className="hover:brightness-90"
-            >
-              <SiTypescript className="h-6 w-6" />
-            </a>
-          </div>
-        </div>
-        <ul className="ml-3 list-disc">
-          <li>
-            Assessed and updated current codebase to use modern JS paradigms
-          </li>
-          <li>
-            Built frontend features utilizing redux state management and
-            internal packages/component libraries
-          </li>
-          <li>Worked closely with mentors to ensure usage of best practices</li>
-          <li>
-            Developed full-stack internal tool for a company-wide hackweek to
-            improve efficiency & productivity of scrum processes
-          </li>
-        </ul>
-      </>
-    ),
+    content: <Zillow />,
   },
   {
     variant: "amazon",
@@ -106,29 +57,7 @@ const experiences: Experience[] = [
         height={42}
       />
     ),
-    content: (
-      <ul className="ml-3 list-disc">
-        <li>
-          Built from scratch a proof-of-concept user interface to help in the
-          process of service onboarding
-        </li>
-        <li>
-          Implemented complex parsing and validation logic via NextJS endpoints
-        </li>
-        <li>
-          Collaborated with senior engineers & managers to design a bespoke
-          application for the customer
-        </li>
-        <li>
-          Consistently delivered before deadlines which resulted in the
-          expansion of the application above and beyond the original
-          deliverables
-        </li>
-        <li>
-          Trained in AWS technologies (Lambda, APIGateway, Fargate, ECS, & more)
-        </li>
-      </ul>
-    ),
+    content: <Amazon />,
   },
   {
     variant: "grovia",
@@ -143,21 +72,7 @@ const experiences: Experience[] = [
         height={45}
       />
     ),
-    content: (
-      <ul className="ml-3 list-disc">
-        <li>
-          Full-Stack development working directly under company leadership
-        </li>
-        <li>
-          Employing modern technologies such as React, Django, Python, etc. to
-          create the best possible user experience for customers
-        </li>
-        <li>
-          Maintaining software development cycle expertise using project
-          management tools like GitHub + Linear
-        </li>
-      </ul>
-    ),
+    content: <Grovia />,
   },
   {
     variant: "uw",
@@ -172,12 +87,7 @@ const experiences: Experience[] = [
         height={45}
       />
     ),
-    content: (
-      <p>
-        Graduated Fall 2023 from the Paul G. Allen School of Computer Science &
-        Engineering with Cum Laude distinction.
-      </p>
-    ),
+    content: <UW />,
   },
 ];
 
