@@ -163,17 +163,17 @@ export default function Home() {
         </div>
         <div className="mb-10 flex w-1/2 flex-row items-center justify-center gap-10 max-sm:mt-5 max-sm:gap-6">
           <a target="_blank" href="https://www.github.com/jacobmckenney">
-            <div className="rounded-full border-2 border-tertiary/30 bg-tertiary/30 p-2 text-black transition-all hover:border-black max-sm:border-[1px]">
+            <div className="rounded-full border-[1px] border-tertiary/30 bg-tertiary/30 p-2 text-black transition-all hover:border-black">
               <Github className="h-6 w-6 max-sm:h-5 max-sm:w-5" />
             </div>
           </a>
           <a target="_blank" href="https://www.linkedin.com/in/jacobmckenney">
-            <div className="rounded-full border-2 border-tertiary/30 bg-tertiary/30 p-2 text-black transition-all hover:border-black max-sm:border-[1px]">
+            <div className="rounded-full border-[1px] border-tertiary/30 bg-tertiary/30 p-2 text-black transition-all hover:border-black">
               <Linkedin className="h-6 w-6 max-sm:h-5 max-sm:w-5" />
             </div>
           </a>
           <a href="mailto:jacobgmckenney@gmail.com">
-            <div className="rounded-full border-2 border-tertiary/30 bg-tertiary/30 p-2 text-black transition-all hover:border-black max-sm:border-[1px]">
+            <div className="rounded-full border-[1px] border-tertiary/30 bg-tertiary/30 p-2 text-black transition-all hover:border-black">
               <Mail className="h-6 w-6 max-sm:h-5 max-sm:w-5" />
             </div>
           </a>
