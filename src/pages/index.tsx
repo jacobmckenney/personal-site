@@ -1,23 +1,24 @@
 import { Github, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { Amazon } from "~/components/Amazon";
+import { Amazon } from "~/components/features/experience/Amazon";
 import {
   Experience,
   ExperienceCard,
   experienceSheet,
-} from "~/components/ExperienceCard";
-import { Grovia } from "~/components/Grovia";
-import { Levanta } from "~/components/Levanta";
-import { Zillow } from "~/components/Zillow";
+} from "~/components/features/experience/ExperienceCard";
+import { Grovia } from "~/components/features/experience/Grovia";
+import { Levanta } from "~/components/features/experience/Levanta";
+import { UW } from "~/components/features/experience/UW";
+import { Zillow } from "~/components/features/experience/Zillow";
 import { Sheet, SheetContent } from "~/components/general/Sheet";
-import { UW } from "~/components/general/UW";
 
 const experiences: Experience[] = [
   {
     variant: "levanta",
     dates: "Feb 2023 - Present",
     title: "Levanta",
+    role: "Software Engineer",
     icon: (
       <Image
         draggable={false}
@@ -33,6 +34,7 @@ const experiences: Experience[] = [
     variant: "zillow",
     dates: "Summer 2022",
     title: "Zillow",
+    role: "SDE Intern",
     icon: (
       <Image
         draggable={false}
@@ -48,6 +50,7 @@ const experiences: Experience[] = [
     variant: "amazon",
     dates: "Winter 2021",
     title: "Amazon",
+    role: "SDE Intern",
     icon: (
       <Image
         draggable={false}
@@ -63,6 +66,7 @@ const experiences: Experience[] = [
     variant: "grovia",
     dates: "Fall 2020",
     title: "Grovia",
+    role: "SDE Intern",
     icon: (
       <Image
         draggable={false}
@@ -78,6 +82,7 @@ const experiences: Experience[] = [
     variant: "uw",
     dates: "2019 - 2023",
     title: "University of Washington",
+    role: "Student",
     icon: (
       <Image
         draggable={false}
@@ -117,7 +122,10 @@ export default function Home() {
                     {experience.icon}
                   </div>
                 </div>
-                <p className="text-3xl font-semibold">{experience.title}</p>
+                <div>
+                  <p className="text-3xl font-semibold">{experience.title}</p>
+                  <p>{experience.role}</p>
+                </div>
               </div>
               <div className="flex w-full max-w-lg flex-col px-2">
                 {experience.content}
@@ -175,6 +183,7 @@ export default function Home() {
             <ExperienceCard key={e.variant} experience={e} />
           ))}
         </div>
+        {/* <ProjectCard title="Testing" image="/images/grovia-long.png" /> */}
       </div>
     </>
   );

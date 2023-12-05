@@ -1,13 +1,14 @@
 import React from "react";
-import { FaReact } from "react-icons/fa";
-import { SiTypescript } from "react-icons/si";
+import { TechStack } from "../tech-stack/TechStack";
+import { ReactLink } from "../tech-stack/links/ReactLink";
+import { ReduxLink } from "../tech-stack/links/ReduxLink";
+import { TSLink } from "../tech-stack/links/TSLink";
 
 interface Props {}
 
 export const Zillow: React.FC<Props> = ({}) => {
   return (
     <>
-      {" "}
       <p className="text-lg">
         <span className="font-semibold">Team: </span>
         <a
@@ -25,17 +26,7 @@ export const Zillow: React.FC<Props> = ({}) => {
       </div>
       <div className="flex gap-3">
         <p className="text-lg font-semibold">Stack:</p>
-        <div className="flex flex-row gap-2">
-          <a href="https://www.react.dev" className="hover:brightness-90">
-            <FaReact className="h-6 w-6" />
-          </a>
-          <a
-            href="https://www.typescriptlang.org/"
-            className="hover:brightness-90"
-          >
-            <SiTypescript className="h-6 w-6" />
-          </a>
-        </div>
+        <TechStack stack={[<ReactLink />, <TSLink />, <ReduxLink />]} />
       </div>
       <ul className="ml-3 list-disc">
         <li>

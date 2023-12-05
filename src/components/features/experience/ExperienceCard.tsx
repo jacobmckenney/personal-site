@@ -1,11 +1,12 @@
 import { VariantProps, cva } from "class-variance-authority";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import React from "react";
 import { cn } from "~/lib/cn";
 
 const experienceCard = cva(
   [
-    "text-white w-[400px] max-sm:w-[300px] h-[75px] border-secondary rounded-xl border-2 p-3 shadow-md",
+    "text-white w-[400px] max-sm:w-[300px] h-[75px] border-secondary rounded-md border-[1px] p-3 shadow-md",
   ],
   {
     variants: {
@@ -21,7 +22,7 @@ const experienceCard = cva(
 );
 
 export const experienceSheet = cva(
-  ["w-full max-w-4xl max-sM: w-full rounded-xl border-2 p-3 relative"],
+  ["w-full max-w-4xl max-sM: w-full rounded-xl border-[1px] p-3 relative"],
   {
     variants: {
       variant: {
@@ -39,6 +40,7 @@ export type Experience = {
   variant: VariantProps<typeof experienceCard>["variant"];
   title: string;
   dates: string;
+  role: string;
   icon: React.ReactNode;
   content: React.ReactNode;
 };
@@ -55,7 +57,7 @@ export const ExperienceCard: React.FC<Props> = ({
   children,
 }) => {
   return (
-    <>
+    <motion.div className="flex" whileHover={{ scale: 1.03 }}>
       <Link
         href={`/?page=${experience.variant}`}
         as={`/${experience.variant}`}
@@ -63,14 +65,14 @@ export const ExperienceCard: React.FC<Props> = ({
           experienceCard({ variant: experience.variant, class: className }),
         )}
       >
-        <div className="flex w-full flex-row items-center justify-between gap-3 text-end">
+        <motion.div className="flex w-full flex-row items-center justify-between gap-3 text-end">
           <div className="w-max">{experience.icon}</div>
           <div>
             <p className="text-xl max-sm:text-lg">{experience.title}</p>
             <p className="text-xs">{experience.dates}</p>
           </div>
-        </div>
+        </motion.div>
       </Link>
-    </>
+    </motion.div>
   );
 };
