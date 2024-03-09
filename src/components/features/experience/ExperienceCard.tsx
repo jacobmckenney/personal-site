@@ -11,11 +11,11 @@ const experienceCard = cva(
   {
     variants: {
       variant: {
-        amazon: ["bg-white border-amazon text-amazon"],
-        grovia: ["bg-white border-grovia text-grovia"],
-        levanta: ["bg-white border-levanta text-levanta"],
-        uw: ["bg-white border-uw text-uw"],
-        zillow: ["bg-white border-zillow text-zillow"],
+        amazon: ["bg-white", "border-amazon", "text-amazon"],
+        grovia: ["bg-white", "border-grovia", "text-grovia"],
+        levanta: ["bg-white", "border-levanta", "text-levanta"],
+        uw: ["bg-white", "border-uw", "text-uw"],
+        zillow: ["bg-white", "border-zillow", "text-zillow"],
       },
     },
   },
@@ -26,11 +26,11 @@ export const experienceSheet = cva(
   {
     variants: {
       variant: {
-        amazon: ["bg-amazon text-white bordr-white"],
-        grovia: ["bg-grovia text-white border-white"],
-        levanta: ["bg-levanta text-white border-white"],
-        uw: ["bg-uw text-white border-white"],
-        zillow: ["bg-zillow text-white border-white"],
+        amazon: ["bg-amazon", "text-white", "border-white"],
+        grovia: ["bg-grovia", "text-white", "border-white"],
+        levanta: ["bg-levanta", "text-white", "border-white"],
+        uw: ["bg-uw", "text-white", "border-white"],
+        zillow: ["bg-zillow", "text-white", "border-white"],
       },
     },
   },

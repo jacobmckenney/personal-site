@@ -183,7 +183,6 @@ export default function Home() {
             <ExperienceCard key={e.variant} experience={e} />
           ))}
         </div>
-        {/* <ProjectCard title="Testing" image="/images/grovia-long.png" /> */}
       </div>
     </>
   );
